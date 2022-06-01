@@ -15,11 +15,11 @@ namespace addressbook_tests_autoit
         public ApplicationManager()
         {
             aux = new AutoItX3();
-            aux.Run(@"c:\FreeAddressBookPortable\AddressBook.exe");
+            aux.Run(@"C:\FreeAddressBookPortable\AddressBook.exe", "", aux.SW_SHOW);
             aux.WinWait(WINTITLE);
             aux.WinActivate(WINTITLE);
             aux.WinWaitActive(WINTITLE);
-            groupHelper = new GroupHelper(this);
+            groupHelper = new GroupHelper(this);           
         }
 
         public void Stop()
