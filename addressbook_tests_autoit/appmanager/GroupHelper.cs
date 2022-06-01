@@ -10,6 +10,7 @@ namespace addressbook_tests_autoit
     public class GroupHelper : HelperBase
     {
         public static string GROUPWINTITLE = "Group editor";
+        public static string GROUPWINDELETETITLE = "Delete group";
         public GroupHelper(ApplicationManager manager) : base(manager) { }
 
         public List<GroupData> GetGroupList()
@@ -29,6 +30,27 @@ namespace addressbook_tests_autoit
             return list;
         }
 
+        internal void Remove()
+        {
+            OpenGroupsDialogue();
+            //Select first group
+            aux.Send("{DOWN}");
+            //click delete button on groups window
+            aux.ControlClick(GROUPWINTITLE, "", "WindowsForms10.BUTTON.app.0.2c908d51");
+            //click OK for delete choised group
+            DeleteChoisedGroup();
+            CloseGroupsDialogue();
+
+
+        }
+
+        private void DeleteChoisedGroup()
+        {
+            aux.WinWait(GROUPWINDELETETITLE);
+            aux.ControlClick(GROUPWINDELETETITLE, "", "WindowsForms10.BUTTON.app.0.2c908d53");
+            aux.WinWait(GROUPWINTITLE);
+        }
+
         public void Add(GroupData newGroup)
         {
             OpenGroupsDialogue();
@@ -40,7 +62,7 @@ namespace addressbook_tests_autoit
         }
 
         private void CloseGroupsDialogue()
-        {
+        {            
             aux.ControlClick(GROUPWINTITLE, "", "WindowsForms10.BUTTON.app.0.2c908d54");
         }
 
