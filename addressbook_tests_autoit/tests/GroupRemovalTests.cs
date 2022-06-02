@@ -9,36 +9,22 @@ namespace addressbook_tests_autoit
     {
         [Test]
         public void TestGroupRemoval()
-        {
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
-            if (oldGroups.Count == 1)
+        {            
+            if (app.Groups.GetGroupList().Count == 1)
             {
-                GroupData newGroup = new GroupData()
-                {
-                    Name = GenerateRandomString(10)
-                };
-                app.Groups.Add(newGroup);
+                app.Groups.Add(new GroupData() { Name = GenerateRandomString(10) });
             }
-            
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
             app.Groups.Remove();
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
 
-            if (oldGroups.Count == 1)
-            {
-                oldGroups.Sort();
-                newGroups.Sort();
-                Assert.AreEqual(oldGroups, newGroups);
-            }
-            else
-            {
-                oldGroups.RemoveAt(0);
-                oldGroups.Sort();
-                newGroups.Sort();
-                Assert.AreEqual(oldGroups, newGroups);
-            }
-
-
+            oldGroups.RemoveAt(0);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups.Count, newGroups.Count);
+            Assert.AreEqual(oldGroups, newGroups);
         }
     }
 }
