@@ -29,12 +29,11 @@ namespace addressbook_tests_autoit
             CloseGroupsDialogue();
             return list;
         }
-
-        internal void Remove()
+        public void Remove()
         {
             OpenGroupsDialogue();
             //Select first group
-            aux.Send("{DOWN}");
+            aux.ControlTreeView(GROUPWINTITLE, "", "WindowsForms10.SysTreeView32.app.0.2c908d51", "Select", "#0|#0", "");            
             //click delete button on groups window
             aux.ControlClick(GROUPWINTITLE, "", "WindowsForms10.BUTTON.app.0.2c908d51");
             //click OK for delete choised group
@@ -70,6 +69,6 @@ namespace addressbook_tests_autoit
         {
             aux.ControlClick(WINTITLE, "", "WindowsForms10.BUTTON.app.0.2c908d512");
             aux.WinWait(GROUPWINTITLE);
-        }
+        }       
     }
 }
