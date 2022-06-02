@@ -24,10 +24,10 @@ namespace addressbook_tests_autoit
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
 
-            
-      //      oldGroups.Sort();
-      //      newGroups.Sort();
-      //      Assert.AreEqual(oldGroups, newGroups);
+            oldGroups.RemoveAt(0);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
             
 
 
